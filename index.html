@@ -512,20 +512,6 @@ body.dark #backToTop {
   }
 }
 
-.deal-intake {
-  margin-top: 40px;
-  padding: 24px;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-.deal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .gallery {
   display: flex;
   gap: 14px;
@@ -591,11 +577,6 @@ body.dark #backToTop {
   font-size: 14px;
   letter-spacing: 0.03em;
   margin-bottom: 12px;
-  transition: background 0.25s ease;
-}
-
-.deal-toggle-btn:hover {
-  background: #3a2370;
 }
 
 .deal-intake {
@@ -611,9 +592,13 @@ body.dark #backToTop {
 }
 
 .deal-intake.expanded {
-  max-height: 900px;
+  max-height: 1200px;
   opacity: 1;
   transform: translateY(0);
+}
+
+.deal-step.hidden {
+  display: none;
 }
 
 .deal-form {
@@ -622,6 +607,25 @@ body.dark #backToTop {
   gap: 12px;
 }
 
+input.error,
+textarea.error {
+  border-color: #b00020;
+  background: #fff5f5;
+}
+
+.deal-success {
+  text-align: left;
+}
+
+.deal-success.hidden {
+  display: none;
+}
+
+.deal-intake.collapsed {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
   </style>
 </head>
 
@@ -817,23 +821,53 @@ body.dark #backToTop {
             </div>
           </div>
         </div>
-		<div class="deal-intake-wrapper">
-		  <button id="dealToggle" class="deal-toggle-btn">Submit a Deal</button>
+<div class="deal-intake-wrapper">
+  <button id="dealToggle" class="deal-toggle-btn">Submit a Deal</button>
 
-		  <div id="dealIntake" class="deal-intake collapsed">
-			<h3 class="deal-title">Submit a Deal</h3>
-			<p class="deal-text">Brokers, owners, and partners may submit opportunities directly.</p>
+  <div id="dealWizard" class="deal-intake collapsed">
 
-			<form class="deal-form">
-			  <input type="text" placeholder="Property address" />
-			  <input type="text" placeholder="City / Market" />
-			  <input type="text" placeholder="Asset type" />
-			  <input type="text" placeholder="Asking price" />
-			  <textarea placeholder="Deal summary"></textarea>
-			  <button class="btn" type="submit">Submit Deal</button>
-			</form>
-		  </div>
-		</div>
+    <!-- STEP 1 -->
+    <div class="deal-step" data-step="1">
+      <h3 class="deal-title">Step 1 — Property Details</h3>
+      <form id="dealFormStep1" class="deal-form">
+        <input type="text" id="address" placeholder="Property address" required />
+        <input type="text" id="city" placeholder="City / Market" required />
+        <input type="text" id="assetType" placeholder="Asset type" required />
+        <button class="btn" type="button" id="nextStep1">Next</button>
+      </form>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="deal-step hidden" data-step="2">
+      <h3 class="deal-title">Step 2 — Financials</h3>
+      <form id="dealFormStep2" class="deal-form">
+        <input type="text" id="price" placeholder="Asking price" required />
+        <textarea id="summary" placeholder="Deal summary" required></textarea>
+        <button class="btn btn-secondary" type="button" id="backStep2">Back</button>
+        <button class="btn" type="button" id="nextStep2">Next</button>
+      </form>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="deal-step hidden" data-step="3">
+      <h3 class="deal-title">Step 3 — Your Info</h3>
+      <form id="dealFormStep3" class="deal-form">
+        <input type="text" id="brokerName" placeholder="Your name" required />
+        <input type="email" id="brokerEmail" placeholder="Email address" required />
+        <button class="btn btn-secondary" type="button" id="backStep3">Back</button>
+        <button class="btn" type="button" id="submitDeal">Submit Deal</button>
+      </form>
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+    <div id="dealSuccess" class="deal-success hidden">
+      <h3 class="deal-title">Deal Submitted</h3>
+      <p class="deal-text">Thank you — Purple Stone will review your submission and reach out if the opportunity aligns with our criteria.</p>
+    </div>
+
+  </div>
+</div>
+
       </div>
     </section>
 
@@ -1218,13 +1252,75 @@ body.dark #backToTop {
 </script>
 <script>
   const dealToggle = document.getElementById('dealToggle');
-  const dealIntake = document.getElementById('dealIntake');
+  const dealWizard = document.getElementById('dealWizard');
 
   dealToggle.addEventListener('click', () => {
-    const expanded = dealIntake.classList.toggle('expanded');
-    dealIntake.classList.toggle('collapsed', !expanded);
-
+    const expanded = dealWizard.classList.toggle('expanded');
+    dealWizard.classList.toggle('collapsed', !expanded);
     dealToggle.textContent = expanded ? 'Hide Deal Form' : 'Submit a Deal';
+  });
+
+  function validateFields(fields) {
+    let valid = true;
+    fields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        valid = false;
+      } else {
+        field.classList.remove('error');
+      }
+    });
+    return valid;
+  }
+
+  const steps = document.querySelectorAll('.deal-step');
+  const successMsg = document.getElementById('dealSuccess');
+
+  // STEP 1
+  document.getElementById('nextStep1').addEventListener('click', () => {
+    const fields = [
+      document.getElementById('address'),
+      document.getElementById('city'),
+      document.getElementById('assetType')
+    ];
+    if (!validateFields(fields)) return;
+
+    steps[0].classList.add('hidden');
+    steps[1].classList.remove('hidden');
+  });
+
+  // STEP 2
+  document.getElementById('backStep2').addEventListener('click', () => {
+    steps[1].classList.add('hidden');
+    steps[0].classList.remove('hidden');
+  });
+
+  document.getElementById('nextStep2').addEventListener('click', () => {
+    const fields = [
+      document.getElementById('price'),
+      document.getElementById('summary')
+    ];
+    if (!validateFields(fields)) return;
+
+    steps[1].classList.add('hidden');
+    steps[2].classList.remove('hidden');
+  });
+
+  // STEP 3
+  document.getElementById('backStep3').addEventListener('click', () => {
+    steps[2].classList.add('hidden');
+    steps[1].classList.remove('hidden');
+  });
+
+  document.getElementById('submitDeal').addEventListener('click', () => {
+    const fields = [
+      document.getElementById('brokerName'),
+      document.getElementById('brokerEmail')
+    ];
+    if (!validateFields(fields)) return;
+
+    steps.forEach(step => step.classList.add('hidden'));
+    successMsg.classList.remove('hidden');
   });
 </script>
 
