@@ -58,25 +58,59 @@
       gap: 14px;
     }
 
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: radial-gradient(circle at 30% 20%, #bca7e8 0, #4b2c82 55%, #241634 100%);
-      box-shadow: 0 8px 18px rgba(23, 21, 31, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #f9f7ff;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+.logo-diamond {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background: linear-gradient(135deg, #bca7e8 0%, #6d4bb8 40%, #3b2a70 100%);
+  clip-path: polygon(
+    50% 0%,   /* top */
+    90% 35%,  /* upper right */
+    75% 100%, /* lower right */
+    25% 100%, /* lower left */
+    10% 35%   /* upper left */
+  );
+  box-shadow:
+    0 0 12px rgba(75, 44, 130, 0.45),
+    inset 0 0 10px rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f9f7ff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: diamondShine 4s ease-in-out infinite;
+}
 
-    .logo-mark span {
-      transform: translateY(0.5px);
-    }
+.logo-engrave {
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Subtle shimmer animation */
+@keyframes diamondShine {
+  0% {
+    box-shadow:
+      0 0 12px rgba(75, 44, 130, 0.45),
+      inset 0 0 10px rgba(255, 255, 255, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(75, 44, 130, 0.65),
+      inset 0 0 14px rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow:
+      0 0 12px rgba(75, 44, 130, 0.45),
+      inset 0 0 10px rgba(255, 255, 255, 0.25);
+    transform: scale(1);
+  }
+}
 
     .logo-text-primary {
       font-family: var(--serif);
@@ -369,10 +403,6 @@ body.dark #backToTop {
   background: var(--accent);
 }
 
-.logo-mark {
-  animation: stonePulse 4s ease-in-out infinite;
-}
-
 @keyframes stonePulse {
   0% {
     box-shadow: 0 8px 18px rgba(23, 21, 31, 0.25);
@@ -626,6 +656,72 @@ textarea.error {
   opacity: 0;
   transform: translateY(10px);
 }
+
+.info-btn {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#infoModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1300;
+}
+
+#infoModalOverlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#infoModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: var(--bg-alt);
+  border-radius: 10px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1400;
+}
+
+#infoModal.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-close {
+  float: right;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-family: var(--serif);
+  margin-bottom: 10px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
   </style>
 </head>
 
@@ -635,14 +731,15 @@ textarea.error {
   <header>
     <div class="shell header-inner">
       <div class="logo">
-        <div class="logo-mark">
-          <span>PS</span>
-        </div>
-        <div>
-          <div class="logo-text-primary">Purple Stone Corporation</div>
-          <div class="logo-text-secondary">Real Estate Investment &amp; Development</div>
-        </div>
-      </div>
+		  <div class="logo-diamond">
+			<span class="logo-engrave">PSC</span>
+		  </div>
+		  <div>
+			<div class="logo-text-primary">Purple Stone Corporation</div>
+			<div class="logo-text-secondary">Real Estate Investment & Development</div>
+		  </div>
+		</div>
+
       <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -1134,6 +1231,25 @@ textarea.error {
 </footer>
 
   <div id="backToTop">Back to top</div>
+  <div id="infoModalOverlay"></div>
+
+<div id="infoModal">
+  <div class="modal-content">
+    <span id="infoModalClose" class="modal-close">×</span>
+    <h2 class="modal-title">Request Information</h2>
+    <p class="modal-text">Submit your details and a member of Purple Stone will reach out.</p>
+
+    <form class="modal-form">
+      <input type="text" placeholder="Your name" />
+      <input type="email" placeholder="Email address" />
+      <textarea placeholder="Your message"></textarea>
+      <button class="btn" type="submit">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<button id="infoButton" class="info-btn">Request Information</button>
+
   <script>
   const backToTop = document.getElementById('backToTop');
 
@@ -1322,6 +1438,26 @@ textarea.error {
     steps.forEach(step => step.classList.add('hidden'));
     successMsg.classList.remove('hidden');
   });
+</script>
+<script>
+  const infoBtn = document.getElementById('infoButton');
+  const infoModal = document.getElementById('infoModal');
+  const infoOverlay = document.getElementById('infoModalOverlay');
+  const infoClose = document.getElementById('infoModalClose');
+
+  function openInfoModal() {
+    infoModal.classList.add('visible');
+    infoOverlay.classList.add('visible');
+  }
+
+  function closeInfoModal() {
+    infoModal.classList.remove('visible');
+    infoOverlay.classList.remove('visible');
+  }
+
+  infoBtn.addEventListener('click', openInfoModal);
+  infoClose.addEventListener('click', closeInfoModal);
+  infoOverlay.addEventListener('click', closeInfoModal);
 </script>
 
 </body>
