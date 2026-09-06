@@ -61,28 +61,10 @@
 .logo-diamond {
   width: 40px;
   height: 40px;
-  position: relative;
-  background: linear-gradient(135deg, #bca7e8 0%, #6d4bb8 40%, #3b2a70 100%);
-  clip-path: polygon(
-    50% 0%,   /* top */
-    90% 35%,  /* upper right */
-    75% 100%, /* lower right */
-    25% 100%, /* lower left */
-    10% 35%   /* upper left */
-  );
-  box-shadow:
-    0 0 12px rgba(75, 44, 130, 0.45),
-    inset 0 0 10px rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f9f7ff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  animation: diamondShine 4s ease-in-out infinite;
+  object-fit: contain;
+  background: transparent;
 }
+
 
 .logo-engrave {
   text-shadow:
@@ -731,14 +713,13 @@ textarea.error {
   <header>
     <div class="shell header-inner">
       <div class="logo">
-		  <div class="logo-diamond">
-			<span class="logo-engrave">PSC</span>
-		  </div>
+		  <img src="images/psclogo.jpg" alt="Purple Stone Diamond Logo" width="100" height="100" />
 		  <div>
 			<div class="logo-text-primary">Purple Stone Corporation</div>
 			<div class="logo-text-secondary">Real Estate Investment & Development</div>
 		  </div>
 		</div>
+
 
       <nav>
         <a href="#home">Home</a>
