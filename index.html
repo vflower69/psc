@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>818 Corporation — Real Estate Investment & Development</title>
+  <title>Purple Stone Corporation — Real Estate Investment & Development</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f5f6f7;
+      --bg: #f6f5f8;
       --bg-alt: #ffffff;
-      --text: #1a1a1a;
-      --muted: #4a4a4a;
-      --accent: #0f0f0f;
-      --border: #dcdcdc;
+      --text: #17151f;
+      --muted: #5b5668;
+      --accent: #4b2c82;        /* Purple Stone core */
+      --accent-soft: #ede7f7;
+      --border: #ddd7ea;
       --radius-lg: 10px;
       --radius-md: 6px;
-      --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.06);
+      --shadow-soft: 0 14px 32px rgba(23, 21, 31, 0.08);
       --max-width: 1180px;
       --serif: "Georgia", "Times New Roman", serif;
-      --sans: "Inter", "Segoe UI", sans-serif;
+      --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
     }
 
     body {
@@ -33,16 +34,16 @@
       text-decoration: none;
     }
 
-    header {
-      background: var(--bg-alt);
-      border-bottom: 1px solid var(--border);
-      padding: 18px 0;
-    }
-
     .shell {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 28px;
+    }
+
+    header {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
     }
 
     .header-inner {
@@ -51,14 +52,41 @@
       align-items: center;
     }
 
-    .brand-title {
+    /* LOGO SYSTEM */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 20%, #bca7e8 0, #4b2c82 55%, #241634 100%);
+      box-shadow: 0 8px 18px rgba(23, 21, 31, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9f7ff;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo-mark span {
+      transform: translateY(0.5px);
+    }
+
+    .logo-text-primary {
       font-family: var(--serif);
       font-size: 22px;
       font-weight: 600;
       letter-spacing: 0.04em;
     }
 
-    .brand-subtitle {
+    .logo-text-secondary {
       font-size: 12px;
       color: var(--muted);
       margin-top: 2px;
@@ -100,11 +128,11 @@
       font-size: 18px;
       color: var(--muted);
       margin-bottom: 24px;
-      max-width: 600px;
+      max-width: 620px;
     }
 
     .hero-body {
-      max-width: 620px;
+      max-width: 640px;
       font-size: 15px;
       color: var(--muted);
       margin-bottom: 32px;
@@ -119,16 +147,19 @@
       border: 1px solid var(--accent);
       background: var(--accent);
       color: #fff;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 22px rgba(75, 44, 130, 0.25);
     }
 
     .btn:hover {
-      opacity: 0.85;
+      opacity: 0.9;
+      box-shadow: 0 12px 26px rgba(75, 44, 130, 0.3);
     }
 
     .btn-secondary {
       background: transparent;
       color: var(--accent);
+      box-shadow: none;
     }
 
     /* SECTION */
@@ -188,7 +219,8 @@
       display: inline-block;
       padding: 4px 10px;
       border-radius: 4px;
-      background: #f2f2f2;
+      background: var(--accent-soft);
+      color: var(--accent);
       font-size: 12px;
       margin-right: 6px;
       margin-top: 10px;
@@ -212,7 +244,7 @@
       padding: 12px;
       border-radius: 4px;
       border: 1px solid var(--border);
-      background: #fafafa;
+      background: #fbf9ff;
       font-size: 14px;
     }
 
@@ -231,6 +263,12 @@
       .columns-2 {
         grid-template-columns: 1fr;
       }
+
+      .header-inner {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -238,9 +276,14 @@
 <body>
   <header>
     <div class="shell header-inner">
-      <div>
-        <div class="brand-title">818 Corporation</div>
-        <div class="brand-subtitle">Real Estate Investment & Development</div>
+      <div class="logo">
+        <div class="logo-mark">
+          <span>PS</span>
+        </div>
+        <div>
+          <div class="logo-text-primary">Purple Stone Corporation</div>
+          <div class="logo-text-secondary">Real Estate Investment &amp; Development</div>
+        </div>
       </div>
       <nav>
         <a href="#home">Home</a>
@@ -258,15 +301,15 @@
     <!-- HERO -->
     <section id="home" class="hero">
       <div class="shell">
-        <div class="hero-title">Real Estate Investment & Development</div>
+        <div class="hero-title">Real Estate Investment &amp; Development</div>
         <div class="hero-subtitle">
-          A disciplined, long‑horizon investment platform focused on stability, stewardship, and enduring value.
+          A purple‑stone foundation for disciplined, long‑horizon real estate stewardship.
         </div>
         <p class="hero-body">
-          818 Corporation is a privately held real estate investment company operating across Washington State.
-          Our work centers on the acquisition, improvement, and long‑term management of residential and small‑scale
-          commercial assets. We prioritize structural integrity, responsible ownership, and a mature, conservative
-          investment posture.
+          Purple Stone Corporation is a privately held real estate investment company operating across
+          Washington State. We focus on the careful acquisition, improvement, and long‑term management
+          of residential and small‑scale commercial assets. Our posture is conservative, our standards
+          are structural, and our horizon is generational.
         </p>
         <a class="btn" href="#portfolio">View Portfolio</a>
         <a class="btn btn-secondary" href="#contact" style="margin-left:12px;">Contact Us</a>
@@ -276,21 +319,21 @@
     <!-- ABOUT -->
     <section id="about" class="section">
       <div class="shell">
-        <div class="section-title">About the Company</div>
+        <div class="section-title">About Purple Stone</div>
         <div class="section-subtitle">
-          A formal, disciplined, family‑owned investment entity.
+          A formal, disciplined, family‑owned investment platform.
         </div>
 
         <div class="columns-2">
           <div>
             <p>
-              <strong>Mission.</strong> To acquire, improve, and steward real estate assets with
+              <strong>Mission.</strong> To acquire, strengthen, and steward real estate assets with
               integrity, precision, and long‑term responsibility.
             </p>
             <p>
-              <strong>Philosophy.</strong> We view real estate as a generational foundation.
-              Every acquisition is approached with disciplined underwriting, every renovation with
-              craftsmanship, and every property with a commitment to maturity and stewardship.
+              <strong>Philosophy.</strong> We view each property as a stone in a larger foundation.
+              Acquisitions are underwritten with discipline, renovations are executed with craftsmanship,
+              and ownership is exercised with maturity and care.
             </p>
           </div>
 
@@ -323,9 +366,10 @@
         <div class="columns-2">
           <div>
             <p>
-              Our portfolio reflects a conservative, long‑term investment posture. Assets are
-              selected for structural potential, location strength, and renovation upside. Each
-              property is managed with maturity, stability, and operational clarity.
+              The Purple Stone portfolio reflects a conservative, long‑term investment posture.
+              Assets are selected for structural potential, location strength, and renovation upside.
+              Each property is managed with stability, clarity, and a purple‑stone emphasis on
+              enduring value.
             </p>
           </div>
 
@@ -413,17 +457,18 @@
         <div class="columns-2">
           <div>
             <p>
-              <strong>Mike, Founder & Principal.</strong><br />
-              818 Corporation was established with a commitment to disciplined investment,
-              operational clarity, and long‑term stewardship. Mike oversees acquisitions,
-              renovation programs, and portfolio strategy.
+              <strong>Mike, Founder &amp; Principal.</strong><br />
+              Purple Stone Corporation was established with a commitment to disciplined investment,
+              operational clarity, and long‑term stewardship. Mike oversees acquisitions, renovation
+              programs, and portfolio strategy.
             </p>
           </div>
 
           <div>
             <p>
               As a family‑owned entity with 60/40 ownership between Mike and his spouse, the
-              corporation operates with shared responsibility and generational intent.
+              corporation operates with shared responsibility and generational intent. Each decision
+              is weighed against the long‑term strength of the stone‑like foundation being built.
             </p>
           </div>
         </div>
@@ -440,7 +485,7 @@
 
         <div class="columns-2">
           <div>
-            <p><strong>Email:</strong> info@818corporation.com</p>
+            <p><strong>Email:</strong> info@purplestonecorp.com</p>
             <p><strong>Location:</strong> Washington State, USA</p>
           </div>
 
@@ -465,7 +510,7 @@
   </main>
 
   <footer>
-    © 818 Corporation — Real Estate Investment & Development
+    © Purple Stone Corporation — Real Estate Investment &amp; Development
   </footer>
 </body>
 </html>
