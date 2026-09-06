@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Purple Stone Corporation — Real Estate Investment Platform</title>
+  <title>Purple Stone Corporation — Real Estate Investment & Development</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f4f4f6;
+      --bg: #f6f5f8;
       --bg-alt: #ffffff;
-      --text: #14151a;
-      --muted: #5a5c63;
-      --accent: #3b2a70;
-      --accent-soft: #e4e1f0;
-      --border: #d2d4dc;
-      --radius-md: 4px;
-      --shadow-soft: 0 10px 28px rgba(10, 12, 20, 0.08);
-      --max-width: 1200px;
+      --text: #17151f;
+      --muted: #5b5668;
+      --accent: #4b2c82;
+      --accent-soft: #ede7f7;
+      --border: #ddd7ea;
+      --radius-lg: 10px;
+      --radius-md: 6px;
+      --shadow-soft: 0 14px 32px rgba(23, 21, 31, 0.08);
+      --max-width: 1180px;
       --serif: "Georgia", "Times New Roman", serif;
       --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
     }
@@ -36,7 +37,7 @@
     .shell {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 28px;
     }
 
     header {
@@ -58,41 +59,43 @@
     }
 
     .logo-mark {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, #3b2a70, #1b1c24);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 20%, #bca7e8 0, #4b2c82 55%, #241634 100%);
+      box-shadow: 0 8px 18px rgba(23, 21, 31, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #f8f8fb;
-      font-size: 13px;
+      color: #f9f7ff;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
+    .logo-mark span {
+      transform: translateY(0.5px);
+    }
+
     .logo-text-primary {
       font-family: var(--serif);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: 0.04em;
     }
 
     .logo-text-secondary {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
       margin-top: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
 
     nav {
       display: flex;
       gap: 22px;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.03em;
     }
 
     nav a {
@@ -106,50 +109,49 @@
     }
 
     .hero {
-      padding: 72px 0 56px;
+      padding: 80px 0 60px;
       background: var(--bg-alt);
       border-bottom: 1px solid var(--border);
     }
 
     .hero-title {
       font-family: var(--serif);
-      font-size: 34px;
+      font-size: 40px;
       font-weight: 600;
-      letter-spacing: 0.03em;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
     }
 
     .hero-subtitle {
-      font-size: 16px;
+      font-size: 18px;
       color: var(--muted);
+      margin-bottom: 24px;
       max-width: 620px;
-      margin-bottom: 22px;
     }
 
     .hero-body {
       max-width: 640px;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .btn {
       display: inline-block;
-      padding: 11px 24px;
-      border-radius: var(--radius-md);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      padding: 12px 26px;
+      border-radius: 4px;
+      font-size: 14px;
+      letter-spacing: 0.03em;
       border: 1px solid var(--accent);
       background: var(--accent);
-      color: #ffffff;
+      color: #fff;
       transition: opacity 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 20px rgba(10, 12, 20, 0.25);
+      box-shadow: 0 10px 22px rgba(75, 44, 130, 0.25);
     }
 
     .btn:hover {
       opacity: 0.9;
-      box-shadow: 0 10px 24px rgba(10, 12, 20, 0.3);
+      box-shadow: 0 12px 26px rgba(75, 44, 130, 0.3);
     }
 
     .btn-secondary {
@@ -159,104 +161,102 @@
     }
 
     .section {
-      padding: 60px 0;
+      padding: 70px 0;
       border-bottom: 1px solid var(--border);
     }
 
     .section-title {
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: 0.03em;
+      margin-bottom: 10px;
     }
 
     .section-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
-      margin-bottom: 26px;
+      margin-bottom: 32px;
     }
 
     .columns-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 36px;
+      gap: 40px;
     }
 
     .card {
       background: var(--bg-alt);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 22px;
+      padding: 24px;
       box-shadow: var(--shadow-soft);
     }
 
     .card-title {
       font-family: var(--serif);
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .card-meta {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .card-body {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--muted);
       line-height: 1.7;
     }
 
     .tag {
       display: inline-block;
-      padding: 3px 9px;
-      border-radius: var(--radius-md);
+      padding: 4px 10px;
+      border-radius: 4px;
       background: var(--accent-soft);
       color: var(--accent);
-      font-size: 11px;
+      font-size: 12px;
       margin-right: 6px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     form {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
 
     label {
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.03em;
       color: var(--muted);
     }
 
     input,
     textarea {
       width: 100%;
-      padding: 11px;
-      border-radius: var(--radius-md);
+      padding: 12px;
+      border-radius: 4px;
       border: 1px solid var(--border);
-      background: #f8f8fb;
-      font-size: 13px;
+      background: #fbf9ff;
+      font-size: 14px;
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 140px;
     }
 
     footer {
-      padding: 26px 0 36px;
+      padding: 28px 0 40px;
       text-align: center;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
     }
 
     .footer-meta {
-      margin-top: 6px;
-      font-size: 10px;
+      margin-top: 8px;
+      font-size: 11px;
     }
 
     @media (max-width: 900px) {
@@ -266,7 +266,7 @@
 
       .header-inner {
         flex-direction: column;
-        gap: 14px;
+        gap: 16px;
         align-items: flex-start;
       }
     }
@@ -277,18 +277,23 @@
   <header>
     <div class="shell header-inner">
       <div class="logo">
-        <div class="logo-mark">PS</div>
+        <div class="logo-mark">
+          <span>PS</span>
+        </div>
         <div>
           <div class="logo-text-primary">Purple Stone Corporation</div>
-          <div class="logo-text-secondary">Real Estate Investment Platform</div>
+          <div class="logo-text-secondary">Real Estate Investment &amp; Development</div>
         </div>
       </div>
       <nav>
-        <a href="#home">Overview</a>
-        <a href="#approach">Approach</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#approach">Investment Approach</a>
         <a href="#markets">Markets</a>
-        <a href="#criteria">Criteria</a>
+        <a href="#criteria">Acquisition Criteria</a>
         <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#strategy">Strategy</a>
         <a href="#governance">Governance</a>
         <a href="#leadership">Leadership</a>
         <a href="#contact">Contact</a>
@@ -300,46 +305,79 @@
     <!-- HERO -->
     <section id="home" class="hero">
       <div class="shell">
-        <div class="hero-title">Real Estate Investment Platform</div>
+        <div class="hero-title">Real Estate Investment &amp; Development</div>
         <div class="hero-subtitle">
-          A disciplined, privately held platform focused on long‑term real estate value creation.
+          A purple‑stone foundation for disciplined, long‑horizon real estate stewardship.
         </div>
         <p class="hero-body">
-          Purple Stone Corporation is a founder‑led real estate investment platform based in Washington State.
-          The firm targets residential and small‑scale commercial assets with durable fundamentals, clear
-          improvement pathways, and resilient cash‑flow profiles. Capital is deployed with conservative
-          leverage, structured risk management, and a long‑term orientation.
+          Purple Stone Corporation is a privately held real estate investment company operating across
+          Washington State. The firm focuses on the careful acquisition, improvement, and long‑term
+          management of residential and small‑scale commercial assets, with an emphasis on structural
+          integrity, conservative leverage, and generational horizons.
         </p>
         <a class="btn" href="#portfolio">View Portfolio</a>
-        <a class="btn btn-secondary" href="#approach" style="margin-left:10px;">Investment Approach</a>
+        <a class="btn btn-secondary" href="#contact" style="margin-left:12px;">Contact Us</a>
       </div>
     </section>
 
-    <!-- APPROACH -->
-    <section id="approach" class="section">
+    <!-- ABOUT -->
+    <section id="about" class="section">
       <div class="shell">
-        <div class="section-title">Investment Approach</div>
+        <div class="section-title">About Purple Stone</div>
         <div class="section-subtitle">
-          Framework, discipline, and underwriting philosophy.
+          A formal, disciplined, founder‑led investment platform.
         </div>
 
         <div class="columns-2">
           <div>
             <p>
-              Purple Stone applies a structured, repeatable framework to each opportunity. The firm
-              focuses on fundamental strength, structural integrity, and alignment with long‑term
-              portfolio objectives. Underwriting emphasizes downside protection, capital efficiency,
-              and clarity of value‑creation levers.
+              <strong>Mission.</strong> To acquire, strengthen, and steward real estate assets with
+              integrity, precision, and long‑term responsibility.
+            </p>
+            <p>
+              <strong>Philosophy.</strong> Each property is treated as a stone in a larger foundation.
+              Acquisitions are underwritten with discipline, renovations are executed with craftsmanship,
+              and ownership is exercised with maturity and care.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Corporate Profile</div>
+            <div class="card-meta">Privately held, founder‑led corporation</div>
+            <div class="card-body">
+              Purple Stone Corporation operates as a focused real estate investment platform with an
+              emphasis on residential assets, multi‑family properties, small commercial holdings, and
+              strategic land positions in select markets across Washington State.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTMENT APPROACH -->
+    <section id="approach" class="section">
+      <div class="shell">
+        <div class="section-title">Investment Approach</div>
+        <div class="section-subtitle">
+          Philosophy, framework, and decision‑making discipline.
+        </div>
+
+        <div class="columns-2">
+          <div>
+            <p>
+              Purple Stone’s investment approach is grounded in conservative underwriting, structural
+              value creation, and long‑term stewardship. The firm prioritizes assets with durable
+              fundamentals, clear improvement pathways, and resilient cash‑flow profiles.
             </p>
           </div>
           <div class="card">
             <div class="card-title">Framework</div>
             <div class="card-body">
-              Opportunity sourcing and screening<br />
-              Fundamental and structural assessment<br />
-              Capital plan and risk review<br />
-              Execution and operating discipline<br />
-              Ongoing stewardship and monitoring
+              Opportunity sourcing<br />
+              Fundamental screening<br />
+              Structural and location assessment<br />
+              Capital planning and risk review<br />
+              Execution and ongoing stewardship
             </div>
           </div>
         </div>
@@ -349,7 +387,7 @@
     <!-- MARKETS -->
     <section id="markets" class="section">
       <div class="shell">
-        <div class="section-title">Markets</div>
+        <div class="section-title">Markets &amp; Focus Areas</div>
         <div class="section-subtitle">
           Target geographies and selection rationale.
         </div>
@@ -357,44 +395,43 @@
         <div class="columns-2">
           <div>
             <p>
-              The platform focuses on select markets across Washington State, with an emphasis on
-              corridors supported by employment bases, infrastructure investment, and stable residential
-              demand. Market selection is driven by long‑term demographic resilience and regulatory
-              clarity.
+              Purple Stone focuses on select markets across Washington State, with an emphasis on
+              growth corridors supported by employment bases, infrastructure investment, and stable
+              residential demand.
             </p>
           </div>
           <div class="card">
-            <div class="card-title">Market Drivers</div>
+            <div class="card-title">Market Considerations</div>
             <div class="card-body">
               Employment and income trends<br />
-              Infrastructure and transit connectivity<br />
-              Community stability and services<br />
-              Regulatory environment and predictability<br />
-              Long‑term demand for quality housing
+              Infrastructure and transit access<br />
+              School districts and community stability<br />
+              Regulatory environment<br />
+              Long‑term demographic resilience
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CRITERIA -->
+    <!-- ACQUISITION CRITERIA -->
     <section id="criteria" class="section">
       <div class="shell">
         <div class="section-title">Acquisition Criteria</div>
         <div class="section-subtitle">
-          Target asset profile and transaction characteristics.
+          What Purple Stone seeks in new investments.
         </div>
 
         <div class="columns-2">
           <div>
-            <p><strong>Asset Types.</strong> Residential single‑family, small multi‑family, select small commercial, and strategic land.</p>
+            <p><strong>Property Types.</strong> Residential single‑family, small multi‑family, select small commercial, and strategic land.</p>
             <p><strong>Location.</strong> Established or emerging neighborhoods within targeted Washington State markets.</p>
-            <p><strong>Profile.</strong> Assets with clear value‑add, stabilization, or repositioning potential.</p>
+            <p><strong>Condition.</strong> Assets with clear structural or operational improvement potential.</p>
           </div>
           <div class="card">
-            <div class="card-title">Transaction Characteristics</div>
+            <div class="card-title">Deal Characteristics</div>
             <div class="card-body">
-              Clear investment thesis and improvement plan<br />
+              Clear value‑add or stabilization thesis<br />
               Reasonable capital expenditure requirements<br />
               Alignment with conservative leverage standards<br />
               Transparent title and regulatory status
@@ -415,22 +452,80 @@
         <div class="columns-2">
           <div>
             <p>
-              The portfolio reflects a disciplined, long‑term investment posture. Assets are selected
-              for structural potential, location strength, and alignment with the platform’s risk and
-              return objectives. Each property is managed with operating discipline and a focus on
-              durability of cash flows.
+              The Purple Stone portfolio reflects a conservative, long‑term investment posture.
+              Assets are selected for structural potential, location strength, and renovation upside.
+              Each property is managed with stability, clarity, and an emphasis on enduring value.
             </p>
           </div>
+
           <div class="card">
             <div class="card-title">Maple Ridge Residence</div>
-            <div class="card-meta">Washington State · Value‑add residential</div>
+            <div class="card-meta">Acquired 2024 · Washington State</div>
             <div class="card-body">
-              Comprehensive modernization program including structural reinforcement and energy‑efficient
-              upgrades. Stabilized as a long‑term rental asset with improved safety, operating efficiency,
-              and tenant experience.
+              Full modernization program including structural reinforcement and energy‑efficient
+              upgrades. Stabilized as a long‑term rental asset with improved safety and operating
+              efficiency.
             </div>
-            <span class="tag">Value‑add</span>
+            <span class="tag">Value‑add renovation</span>
             <span class="tag">Stabilized rental</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="shell">
+        <div class="section-title">Services</div>
+        <div class="section-subtitle">
+          A structured, institutional approach to the asset lifecycle.
+        </div>
+
+        <div class="columns-2">
+          <div>
+            <p><strong>Acquisition.</strong> Disciplined identification of undervalued or structurally promising assets.</p>
+            <p><strong>Development.</strong> Renovation programs emphasizing durability, compliance, and long‑term value.</p>
+            <p><strong>Management.</strong> Mature, transparent rental operations with responsible stewardship.</p>
+            <p><strong>Disposition.</strong> Strategic sales aligned with portfolio balance and capital allocation.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Renovation Standards</div>
+            <div class="card-body">
+              Structural integrity and safety<br />
+              Code compliance as baseline<br />
+              Long‑term maintenance planning<br />
+              Energy‑efficiency where appropriate
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGY -->
+    <section id="strategy" class="section">
+      <div class="shell">
+        <div class="section-title">Investment Strategy</div>
+        <div class="section-subtitle">
+          A conservative, long‑horizon methodology.
+        </div>
+
+        <div class="columns-2">
+          <div>
+            <p><strong>Market Analysis.</strong> Evaluation of Washington State growth corridors.</p>
+            <p><strong>Selection.</strong> Focus on assets with structural potential and location advantage.</p>
+            <p><strong>Value Creation.</strong> Renovations designed for longevity, not short‑term optics.</p>
+            <p><strong>Risk Management.</strong> Conservative leverage and disciplined budgeting.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Core Strategies</div>
+            <div class="card-body">
+              Buy‑Fix‑Hold<br />
+              Buy‑Fix‑Sell<br />
+              Rental Stabilization<br />
+              Land Banking
+            </div>
           </div>
         </div>
       </div>
@@ -439,25 +534,25 @@
     <!-- GOVERNANCE -->
     <section id="governance" class="section">
       <div class="shell">
-        <div class="section-title">Governance</div>
+        <div class="section-title">Governance &amp; Stewardship</div>
         <div class="section-subtitle">
-          Oversight, risk management, and operating discipline.
+          Oversight, risk controls, and ethical standards.
         </div>
 
         <div class="columns-2">
           <div>
             <p>
-              Purple Stone operates with a focused governance structure designed to support prudent
-              capital deployment and long‑term asset stewardship. The platform maintains disciplined
-              review of leverage, liquidity, and operating performance.
+              Purple Stone operates with a focused governance structure designed to balance prudence,
+              resilience, and clarity in decision‑making. The firm maintains disciplined review of
+              capital commitments, risk exposures, and long‑term obligations.
             </p>
           </div>
           <div class="card">
-            <div class="card-title">Governance Principles</div>
+            <div class="card-title">Principles</div>
             <div class="card-body">
               Integrity in counterparties and contracts<br />
+              Transparent financial reporting to stakeholders<br />
               Conservative leverage and liquidity management<br />
-              Transparent reporting to stakeholders<br />
               Long‑term stewardship of assets and communities
             </div>
           </div>
@@ -470,23 +565,46 @@
       <div class="shell">
         <div class="section-title">Leadership</div>
         <div class="section-subtitle">
-          Founder‑led, long‑term orientation.
+          Founder‑led, long‑term stewardship.
         </div>
 
         <div class="columns-2">
           <div>
             <p>
-              The platform is led by its founder, who oversees investment decisions, development
-              programs, and portfolio strategy. Leadership emphasizes disciplined underwriting,
-              structural renovation standards, and alignment with long‑term objectives.
+              Purple Stone Corporation is led by its founder, who oversees acquisitions, development
+              programs, and long‑term portfolio strategy. Leadership emphasizes disciplined underwriting,
+              structural renovation standards, and a generational horizon for asset stewardship.
             </p>
           </div>
+
           <div>
             <p>
-              Relationships with lenders, partners, and counterparties are approached with
-              professionalism and long‑term intent. The platform’s operating posture is designed
-              to support stability, clarity, and responsible growth.
+              Relationships with lenders, partners, and counterparties are approached with professionalism
+              and long‑term intent. The firm’s governance and operating posture are designed to support
+              stability, clarity, and responsible growth.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section">
+      <div class="shell">
+        <div class="section-title">Values &amp; Principles</div>
+        <div class="section-subtitle">
+          The foundation beneath every decision.
+        </div>
+
+        <div class="columns-2">
+          <div>
+            <p><strong>Integrity.</strong> Commitments are honored; counterparties are treated fairly.</p>
+            <p><strong>Discipline.</strong> Underwriting and capital deployment follow structured frameworks.</p>
+            <p><strong>Stewardship.</strong> Assets are managed with long‑term community and tenant impact in mind.</p>
+          </div>
+          <div>
+            <p><strong>Horizon.</strong> Decisions are evaluated against generational timeframes.</p>
+            <p><strong>Responsibility.</strong> Risk is managed conservatively; leverage is used thoughtfully.</p>
           </div>
         </div>
       </div>
@@ -529,7 +647,7 @@
 
   <footer>
     <div class="shell">
-      <div>© Purple Stone Corporation — Real Estate Investment Platform. All rights reserved.</div>
+      <div>© Purple Stone Corporation — Real Estate Investment &amp; Development. All rights reserved.</div>
       <div class="footer-meta">
         Purple Stone Corporation is a privately held Washington corporation. This website is for informational purposes only and does not constitute an offer of securities or investment advice.
       </div>
