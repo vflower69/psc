@@ -270,6 +270,34 @@
         align-items: flex-start;
       }
     }
+	
+	#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 10px 22px rgba(75, 44, 130, 0.25);
+  z-index: 9999;
+}
+
+#backToTop.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#backToTop:hover {
+  box-shadow: 0 12px 26px rgba(75, 44, 130, 0.35);
+}
+
   </style>
 </head>
 
@@ -653,5 +681,22 @@
       </div>
     </div>
   </footer>
+  <div id="backToTop">Back to top</div>
+  <script>
+  const backToTop = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
 </body>
 </html>
