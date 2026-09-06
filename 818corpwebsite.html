@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>818 Corporation — Real Estate Investment & Development</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --bg-alt: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #111827;
+      --border: #e5e7eb;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+      --max-width: 1120px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    nav a {
+      padding: 6px 0;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0;
+      transform: scaleX(0.6);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    nav a:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .hero {
+      padding: 40px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.18s ease, box-shadow 0.18s ease,
+        transform 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #f9fafb;
+      border-color: var(--accent);
+    }
+
+    .btn:hover {
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-card-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--muted);
+    }
+
+    .hero-card-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 26px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 500;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .section-grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 24px;
+    }
+
+    .section-body {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card-body {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--muted);
+    }
+
+    .columns-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .founder-block {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .founder-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .founder-role {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: 24px;
+    }
+
+    .contact-meta {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-meta p {
+      margin: 0 0 8px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 13px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    input,
+    textarea {
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-family: inherit;
+      background: #f9fafb;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 0 22px;
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .section-grid-2,
+      .columns-2,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        position: static;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-title {
+        font-size: 24px;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .shell {
+        padding: 0 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="shell header-inner">
+        <div class="brand">
+          <div class="brand-mark">818</div>
+          <div class="brand-text">
+            <div class="brand-title">818 Corporation</div>
+            <div class="brand-subtitle">
+              Real Estate Investment &amp; Development
+            </div>
+          </div>
+        </div>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#services">Services</a>
+          <a href="#strategy">Investment Strategy</a>
+          <a href="#founder">Founder</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO / HOME -->
+      <section id="home" class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <div class="hero-title">Real Estate Investment &amp; Development</div>
+            <div class="hero-subtitle">
+              Precision-driven acquisitions. High-integrity development. Long-term value creation.
+            </div>
+            <p class="hero-body">
+              818 Corporation is a privately held real estate investment company specializing in
+              residential and small-scale commercial acquisitions across Washington State. With a
+              disciplined buy-fix-hold strategy and a commitment to quality, we transform
+              undervalued properties into stable, long-term assets.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+                View portfolio
+              </button>
+              <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                Contact us
+              </button>
+            </div>
+          </div>
+          <aside class="hero-card">
+            <div class="hero-card-label">Operating pillars</div>
+            <div class="hero-card-title">A disciplined, long-horizon platform</div>
+            <div class="pill-row">
+              <span class="pill">Strategic acquisitions</span>
+              <span class="pill">Quality development</span>
+              <span class="pill">Operational excellence</span>
+              <span class="pill">Long-term value</span>
+            </div>
+            <p class="hero-card-note">
+              Every property is approached with disciplined underwriting, renovation standards
+              focused on durability and safety, and a clear plan for long-term portfolio stability.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">About</div>
+            <div class="section-subtitle">
+              Structure, focus, and philosophy behind 818 Corporation.
+            </div>
+          </div>
+          <div class="section-grid-2">
+            <div>
+              <p class="section-body">
+                <strong>Mission.</strong> To acquire, improve, and manage real estate assets with
+                integrity, precision, and long-term vision.
+              </p>
+              <p class="section-body">
+                <strong>Philosophy.</strong> We believe real estate is a foundation for
+                generational stability. Every acquisition is approached with discipline, every
+                renovation with craftsmanship, and every property with a commitment to responsible
+                ownership.
+              </p>
+            </div>
+            <div>
+              <div class="card">
+                <div class="card-title">Company structure</div>
+                <div class="card-meta">Privately held S-Corporation</div>
+                <div class="card-body">
+                  <strong>Ownership.</strong><br />
+                  Mike — 60%<br />
+                  Spouse — 40%
+                  <br /><br />
+                  <strong>Operating focus.</strong>
+                  <ul class="list" style="margin-top:8px;">
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Residential single-family homes</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Multi-family units</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Small commercial properties</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Strategic land holdings</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">Portfolio</div>
+            <div class="section-subtitle">
+              Representative assets and value-creation approach.
+            </div>
+          </div>
+          <div class="columns-2">
+            <div>
+              <p class="section-body">
+                818 Corporation maintains a curated portfolio of residential and small commercial
+                properties that reflect our commitment to quality, stability, and long-term value.
+                Each asset is underwritten with a clear strategy—buy-fix-hold, buy-fix-sell, rental
+                stabilization, or land banking.
+              </p>
+              <p class="section-body">
+                The portfolio is intentionally concentrated in growth corridors across Washington
+                State, with a focus on structural potential, location advantage, and renovation
+                upside.
+              </p>
+            </div>
+            <div>
+              <!-- Example property card (template) -->
+              <div class="card">
+                <div class="card-title">Maple Ridge Residence</div>
+                <div class="card-meta">
+                  Acquired 2024 · Strategy: Buy‑Fix‑Hold · Washington State
+                </div>
+                <div class="card-body">
+                  Full interior modernization, structural reinforcement, and energy-efficient
+                  upgrades. Stabilized as a long-term rental asset with improved safety, comfort,
+                  and operating efficiency.
+                </div>
+                <div class="card-tags">
+                  <span class="tag">+22% value increase post-renovation</span>
+                  <span class="tag">Stabilized rental</span>
+                  <span class="tag">Energy-efficient upgrades</span>
+                </div>
+              </div>
+              <p class="section-body" style="margin-top:12px;">
+                Additional properties can be surfaced here as individual cards, each with
+                acquisition year, strategy, renovation scope, current status, and key value
+                highlights.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">Services</div>
+            <div class="section-subtitle">
+              How 818 Corporation operates across the asset lifecycle.
+            </div>
+          </div>
+          <div class="columns-2">
+            <div>
+              <ul class="list">
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Acquisition.</strong> Identification of undervalued or structurally
+                    promising properties in high-growth regions, using disciplined evaluation and
+                    conservative underwriting.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Development &amp; renovation.</strong> Renovation programs that
+                    prioritize structural integrity, modern design, and long-term durability over
+                    short-term cosmetic fixes.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Property management.</strong> Stable, well-managed rental operations
+                    with transparent communication and responsible stewardship.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Disposition.</strong> Strategic sales when appropriate to realize
+                    value, rebalance risk, or reallocate capital.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="card">
+                <div class="card-title">Execution principles</div>
+                <div class="card-body">
+                  <ul class="list">
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Transparent budgeting and cost tracking.</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Clear scopes of work and contractor alignment.</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Safety and code compliance as non-negotiables.</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Long-term maintenance planning for each asset.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INVESTMENT STRATEGY -->
+      <section id="strategy" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">Investment Strategy</div>
+            <div class="section-subtitle">
+              Methodology, risk posture, and long-term horizon.
+            </div>
+          </div>
+          <div class="section-grid-2">
+            <div>
+              <p class="section-body">
+                818 Corporation follows a structured investment methodology designed for stability
+                and long-term value creation:
+              </p>
+              <ul class="list">
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Market analysis.</strong> Macro and micro-level evaluation of
+                    Washington State growth corridors, including demographic trends, employment
+                    drivers, and infrastructure plans.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Property selection.</strong> Focus on assets with structural potential,
+                    location advantage, or renovation upside.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Value creation.</strong> Renovations designed for long-term durability,
+                    not short-term cosmetic shortcuts.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Risk management.</strong> Conservative leverage, disciplined budgeting,
+                    and operational transparency.
+                  </span>
+                </li>
+                <li>
+                  <span class="list-bullet"></span>
+                  <span>
+                    <strong>Long-term horizon.</strong> A portfolio built for stability and
+                    generational value.
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="card">
+                <div class="card-title">Core strategies</div>
+                <div class="card-body">
+                  <ul class="list">
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Buy‑Fix‑Hold</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Buy‑Fix‑Sell</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Rental stabilization</span>
+                    </li>
+                    <li>
+                      <span class="list-bullet"></span>
+                      <span>Land banking</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="section-body" style="margin-top:12px;">
+                Strategy selection is tailored to each asset’s profile, balancing risk, capital
+                requirements, and long-term portfolio objectives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUNDER STORY -->
+      <section id="founder" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">Founder</div>
+            <div class="section-subtitle">
+              Leadership and origin story of 818 Corporation.
+            </div>
+          </div>
+          <div class="columns-2">
+            <div class="founder-block">
+              <div class="founder-name">Mike</div>
+              <div class="founder-role">Founder &amp; Principal, 818 Corporation</div>
+              <p>
+                818 Corporation began with a simple idea: build a real estate portfolio grounded in
+                discipline, integrity, and long-term thinking. With a background in multi-industry
+                innovation and a commitment to operational excellence, Mike leads the company’s
+                acquisition strategy, renovation oversight, and long-term portfolio planning.
+              </p>
+            </div>
+            <div class="founder-block">
+              <p>
+                As a family-owned company with 60/40 ownership between Mike and his wife, 818
+                Corporation is built on shared vision, shared responsibility, and shared long-term
+                goals. Decisions are made with generational horizons in mind, balancing risk and
+                resilience across the portfolio.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div class="section-title">Contact</div>
+            <div class="section-subtitle">
+              Partnerships, acquisitions, and property opportunities.
+            </div>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-meta">
+              <p>
+                <strong>Let’s connect.</strong> For inquiries regarding partnerships, acquisitions,
+                or property opportunities, reach out using the details below or submit a brief
+                message through the form.
+              </p>
+              <p>
+                <span class="contact-label">Email</span><br />
+                <span class="contact-value">info@818corporation.com</span>
+              </p>
+              <p>
+                <span class="contact-label">Location</span><br />
+                <span class="contact-value">Washington State, USA</span>
+              </p>
+            </div>
+            <div>
+              <form>
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" />
+                </div>
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="How can 818 Corporation help?"></textarea>
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-inner">
+        <div>© 818 Corporation. All rights reserved.</div>
+        <div>Privately held real estate investment &amp; development company based in Washington State.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Optional: smooth scroll for nav in older browsers -->
+  <script>
+    document.querySelectorAll("nav a").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
