@@ -577,6 +577,51 @@ body.dark #backToTop {
   border-radius: 10px;
 }
 
+.deal-intake-wrapper {
+  margin-top: 20px;
+}
+
+.deal-toggle-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+  transition: background 0.25s ease;
+}
+
+.deal-toggle-btn:hover {
+  background: #3a2370;
+}
+
+.deal-intake {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: max-height 0.45s ease, opacity 0.45s ease, transform 0.45s ease;
+}
+
+.deal-intake.expanded {
+  max-height: 900px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.deal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
   </style>
 </head>
 
@@ -772,21 +817,24 @@ body.dark #backToTop {
             </div>
           </div>
         </div>
+		<div class="deal-intake-wrapper">
+		  <button id="dealToggle" class="deal-toggle-btn">Submit a Deal</button>
+
+		  <div id="dealIntake" class="deal-intake collapsed">
+			<h3 class="deal-title">Submit a Deal</h3>
+			<p class="deal-text">Brokers, owners, and partners may submit opportunities directly.</p>
+
+			<form class="deal-form">
+			  <input type="text" placeholder="Property address" />
+			  <input type="text" placeholder="City / Market" />
+			  <input type="text" placeholder="Asset type" />
+			  <input type="text" placeholder="Asking price" />
+			  <textarea placeholder="Deal summary"></textarea>
+			  <button class="btn" type="submit">Submit Deal</button>
+			</form>
+		  </div>
+		</div>
       </div>
-	  <div class="deal-intake">
-		  <h3 class="deal-title">Submit a Deal</h3>
-		  <p class="deal-text">Brokers, owners, and partners may submit opportunities directly.</p>
-
-		  <form class="deal-form">
-			<input type="text" placeholder="Property address" />
-			<input type="text" placeholder="City / Market" />
-			<input type="text" placeholder="Asset type" />
-			<input type="text" placeholder="Asking price" />
-			<textarea placeholder="Deal summary"></textarea>
-			<button class="btn" type="submit">Submit Deal</button>
-		  </form>
-	  </div>
-
     </section>
 
     <!-- PORTFOLIO -->
@@ -818,8 +866,7 @@ body.dark #backToTop {
             <span class="tag">Stabilized rental</span>
           </div>
         </div>
-      </div>
-	  <div class="gallery">
+		<div class="gallery">
 		  <img src="img/property1.jpg" class="gallery-img" />
 		  <img src="img/property2.jpg" class="gallery-img" />
 		  <img src="img/property3.jpg" class="gallery-img" />
@@ -829,7 +876,7 @@ body.dark #backToTop {
 		<div id="lightbox">
 		  <img id="lightboxImg" />
 		</div>
-
+      </div>
     </section>
 
     <!-- SERVICES -->
@@ -1167,6 +1214,17 @@ body.dark #backToTop {
   lightboxOverlay.addEventListener('click', () => {
     lightbox.classList.remove('visible');
     lightboxOverlay.classList.remove('visible');
+  });
+</script>
+<script>
+  const dealToggle = document.getElementById('dealToggle');
+  const dealIntake = document.getElementById('dealIntake');
+
+  dealToggle.addEventListener('click', () => {
+    const expanded = dealIntake.classList.toggle('expanded');
+    dealIntake.classList.toggle('collapsed', !expanded);
+
+    dealToggle.textContent = expanded ? 'Hide Deal Form' : 'Submit a Deal';
   });
 </script>
 
