@@ -397,7 +397,7 @@ body.dark #backToTop {
   display: none;
   position: fixed;
   top: 18px;
-  right: 18px;
+  left: 18px;
   z-index: 1100;
   background: var(--accent);
   color: #fff;
