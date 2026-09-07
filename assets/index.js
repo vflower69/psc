@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const backToTop = document.getElementById('backToTop');
-
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
       backToTop.classList.add('visible');
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const header = document.querySelector('header');
-
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
       header.classList.add('scrolled');
@@ -41,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach(section => observer.observe(section));
 
   const scrollProgress = document.getElementById('scrollProgress');
-
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.body.scrollHeight - window.innerHeight;
